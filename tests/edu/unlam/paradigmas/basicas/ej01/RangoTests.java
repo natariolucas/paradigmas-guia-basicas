@@ -169,19 +169,17 @@ class RangoTests {
 		Rango rango = Rango.NewRangoCerrado(1, 3);
 		Rango otro = Rango.NewRangoCerrado(1, 3);
 		
-		assertFalse(rango.incluyeRango(otro));
-		assertFalse(otro.incluyeRango(rango));
-		
+		assertTrue(rango.incluyeRango(otro));
+		assertTrue(otro.incluyeRango(rango));
 	}
 	
 	@Test
-	void TestRangoNoIncluidoAmbosAbiertos() {
+	void TestRangoIncluidoAmbosAbiertos() {
 		Rango rango = Rango.NewRangoAbierto(1, 3);
 		Rango otro = Rango.NewRangoAbierto(1, 3);
 		
-		assertFalse(rango.incluyeRango(otro));
-		assertFalse(otro.incluyeRango(rango));
-		
+		assertTrue(rango.incluyeRango(otro));
+		assertTrue(otro.incluyeRango(rango));
 	}
 	
 	@Test
@@ -191,7 +189,62 @@ class RangoTests {
 		
 		assertFalse(rango.incluyeRango(otro));
 		assertFalse(otro.incluyeRango(rango));
-		
 	}
+	
+	@Test
+	void TestRangoNoIncluido() {
+		Rango rango = Rango.NewRangoCerrado(1, 3);
+		Rango otro = Rango.NewRangoCerrado(4, 5);
+		
+		assertFalse(rango.incluyeRango(otro));
+		assertFalse(otro.incluyeRango(rango));
+	}
+	
+	@Test
+	void TestRangoNoIntersecta() {
+		Rango rango = Rango.NewRangoCerrado(1, 3);
+		Rango otro = Rango.NewRangoCerrado(4, 5);
+		
+		assertFalse(rango.intersectaRango(otro));
+		assertFalse(otro.intersectaRango(rango));
+	}
+	
+	@Test
+	void TestRangoIntersectaDerecha() {
+		Rango rango = Rango.NewRangoCerrado(1, 3);
+		Rango otro = Rango.NewRangoCerrado(-1, 2);
+		
+		assertTrue(rango.intersectaRango(otro));
+		assertTrue(otro.intersectaRango(rango));
+	}
+	
+	@Test
+	void TestRangoIntersectaIzquierda() {
+		Rango rango = Rango.NewRangoCerrado(1, 3);
+		Rango otro = Rango.NewRangoCerrado(2, 5);
+		
+		assertTrue(rango.intersectaRango(otro));
+		assertTrue(otro.intersectaRango(rango));
+	}
+	
+	@Test
+	void TestRangoIntersectaCompleto() {
+		Rango rango = Rango.NewRangoCerrado(1, 5);
+		Rango otro = Rango.NewRangoCerrado(2, 3);
+		
+		assertTrue(rango.intersectaRango(otro));
+		assertTrue(otro.intersectaRango(rango));
+	}
+
+	@Test
+	void TestRangoIntersectaIguales() {
+		Rango rango = Rango.NewRangoCerrado(1, 2);
+		Rango otro = Rango.NewRangoCerrado(1, 2);
+		
+		assertTrue(rango.intersectaRango(otro));
+		assertTrue(otro.intersectaRango(rango));
+	}
+
+	
 	
 }

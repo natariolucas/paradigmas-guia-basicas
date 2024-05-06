@@ -40,6 +40,13 @@ public class Rango {
 				this.extremoDerecho.incluyeExtremo(otro.extremoDerecho);
 	}
 
+	public boolean intersectaRango(Rango otro) {	// TODO: TESTS	
+		return 
+				( this.extremoIzquierdo.incluyeExtremo(otro.extremoIzquierdo) && this.extremoDerecho.incluyeExtremo(otro.extremoIzquierdo) ) ||
+				( this.extremoIzquierdo.incluyeExtremo(otro.extremoDerecho) && this.extremoDerecho.incluyeExtremo(otro.extremoDerecho) ) ||
+				otro.incluyeRango(this);
+	}
+	
 	public boolean esCerrado() {
 		return this.esCerradoAIzquierda() && this.esCerradoADerecha();
 	}

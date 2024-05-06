@@ -18,27 +18,31 @@ public class ExtremoIzquierdo extends Extremo implements Comparable<ExtremoIzqui
 	public int compareTo(ExtremoIzquierdo otro) {
 		int diferenciaDeValor = super.compararValor(otro);
 		if (diferenciaDeValor == 0) {
-
-			if (super.mismaCondicionDeInclusion(otro)) {
-				return 0;
-			}
-
-			if (super.esCerrado()) {
-				return -1;
-			}
-
-			return 1;
-
+			return this.compararLimites(otro);
 		}
 
 		return diferenciaDeValor;
 	}
 	
-	/**
-	 * Si son iguales se considera que no lo incluye
-	 * */
+	private int compararLimites(ExtremoIzquierdo otro) {
+		if (super.mismaCondicionDeInclusion(otro)) {
+			return 0;
+		}
+
+		if (super.esCerrado()) {
+			return -1;
+		}
+
+		return 1;
+	}
+	
 	public boolean incluyeExtremo(ExtremoIzquierdo otro) {
-		return this.compareTo(otro) < 0;
+		return this.compareTo(otro) <= 0;
+	}
+	
+	public boolean incluyeExtremo(ExtremoDerecho derecho) {
+		int diferenciaDeValor = super.compararValor(derecho);
+		return ( diferenciaDeValor == 0 && this.esCerrado() && derecho.esCerrado() ) || diferenciaDeValor < 0;
 	}
 
 }

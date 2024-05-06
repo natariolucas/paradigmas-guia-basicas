@@ -34,11 +34,12 @@ public class ExtremoDerecho extends Extremo implements Comparable<ExtremoDerecho
 		return diferenciaDeValor;
 	}
 	
-	/**
-	 * Si son iguales se considera que no lo incluye
-	 * */
 	public boolean incluyeExtremo(ExtremoDerecho otro) {
-		return this.compareTo(otro) > 0;
+		return this.compareTo(otro) >= 0;
 	}
 
+	public boolean incluyeExtremo(ExtremoIzquierdo izquierdo) {
+		int diferenciaDeValor = super.compararValor(izquierdo);
+		return ( diferenciaDeValor == 0 && this.esCerrado() && izquierdo.esCerrado() ) || diferenciaDeValor > 0;
+	}
 }
