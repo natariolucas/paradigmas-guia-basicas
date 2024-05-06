@@ -31,8 +31,13 @@ public class Rango {
 		return new Rango(false, extremoIzquierda, false, extremoDerecha);
 	}
 	
-	public boolean ValorIncluido(double valor ) {
-		return this.extremoIzquierdo.ValorIncluido(valor) && this.extremoDerecho.ValorIncluido(valor);
+	public boolean incluyeValor(double valor ) {
+		return this.extremoIzquierdo.incluyeValor(valor) && this.extremoDerecho.incluyeValor(valor);
+	}
+	
+	public boolean incluyeRango(Rango otro) {
+		return this.extremoIzquierdo.incluyeExtremo(otro.extremoIzquierdo) && 
+				this.extremoDerecho.incluyeExtremo(otro.extremoDerecho);
 	}
 
 	public boolean esCerrado() {
