@@ -39,7 +39,7 @@ public class Rango {
 		Rango rangoAbarcativo = NewRangoAbierto(0,0); // Rango cero
 		
 		for(Rango rango : rangos) {
-			rangoAbarcativo = SumarRangos(rangoAbarcativo, rango);
+			rangoAbarcativo = rangoAbarcativo.sumar(rango);
 		}
 		
 		return rangoAbarcativo;
