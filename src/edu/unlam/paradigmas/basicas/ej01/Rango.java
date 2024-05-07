@@ -40,7 +40,7 @@ public class Rango {
 				this.extremoDerecho.incluyeExtremo(otro.extremoDerecho);
 	}
 
-	public boolean intersectaRango(Rango otro) {	// TODO: TESTS	
+	public boolean intersectaRango(Rango otro) {
 		return 
 				( this.extremoIzquierdo.incluyeExtremo(otro.extremoIzquierdo) && this.extremoDerecho.incluyeExtremo(otro.extremoIzquierdo) ) ||
 				( this.extremoIzquierdo.incluyeExtremo(otro.extremoDerecho) && this.extremoDerecho.incluyeExtremo(otro.extremoDerecho) ) ||
