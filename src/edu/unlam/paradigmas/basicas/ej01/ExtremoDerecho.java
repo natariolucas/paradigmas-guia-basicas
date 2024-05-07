@@ -42,4 +42,14 @@ public class ExtremoDerecho extends Extremo implements Comparable<ExtremoDerecho
 		int diferenciaDeValor = super.compararValor(izquierdo);
 		return ( diferenciaDeValor == 0 && this.esCerrado() && izquierdo.esCerrado() ) || diferenciaDeValor > 0;
 	}
+	
+	@Override
+	public String toString() {
+		String inclusion = ")";
+		if (this.esCerrado()) {
+			inclusion = "]";
+		}
+		
+		return super.toString() + inclusion;
+	}
 }

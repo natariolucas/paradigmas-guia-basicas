@@ -3,24 +3,6 @@ package edu.unlam.paradigmas.basicas.ej01;
 import java.util.Objects;
 
 public class Extremo {
-
-	@Override
-	public int hashCode() {
-		return Objects.hash(cerrado, valor);
-	}
-
-	@Override
-	public boolean equals(Object obj) {
-		if (this == obj)
-			return true;
-		if (obj == null)
-			return false;
-		if (getClass() != obj.getClass())
-			return false;
-		Extremo other = (Extremo) obj;
-		return cerrado == other.cerrado && Double.doubleToLongBits(valor) == Double.doubleToLongBits(other.valor);
-	}
-
 	protected double valor;
 	protected boolean cerrado;
 
@@ -48,5 +30,29 @@ public class Extremo {
 	protected int compararValor(Extremo o) {
 		return Double.compare(this.getValor(), o.getValor());
 	}
+	
+
+	@Override
+	public String toString() {
+		return Double.toString(this.valor);
+	}
+
+	@Override
+	public int hashCode() {
+		return Objects.hash(cerrado, valor);
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Extremo other = (Extremo) obj;
+		return cerrado == other.cerrado && Double.doubleToLongBits(valor) == Double.doubleToLongBits(other.valor);
+	}
+
 
 }

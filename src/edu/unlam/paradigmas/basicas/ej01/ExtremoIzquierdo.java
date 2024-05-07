@@ -45,4 +45,15 @@ public class ExtremoIzquierdo extends Extremo implements Comparable<ExtremoIzqui
 		return ( diferenciaDeValor == 0 && this.esCerrado() && derecho.esCerrado() ) || diferenciaDeValor < 0;
 	}
 
+	@Override
+	public String toString() {
+		String inclusion = "(";
+		if (this.esCerrado()) {
+			inclusion = "[";
+		}
+		
+		return inclusion + super.toString();
+	}
+
+	
 }

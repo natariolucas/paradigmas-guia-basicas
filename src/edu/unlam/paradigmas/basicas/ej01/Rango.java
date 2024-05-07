@@ -3,6 +3,8 @@ package edu.unlam.paradigmas.basicas.ej01;
 import java.util.Objects;
 
 public class Rango {
+	private static final String SEPARADOR = ",";
+	
 	private ExtremoIzquierdo extremoIzquierdo;
 	private ExtremoDerecho extremoDerecho;
 
@@ -98,5 +100,11 @@ public class Rango {
 		return Objects.equals(extremoDerecho, other.extremoDerecho)
 				&& Objects.equals(extremoIzquierdo, other.extremoIzquierdo);
 	}
+	
+	@Override
+	public String toString() {
+		return this.extremoIzquierdo.toString() + SEPARADOR + this.extremoDerecho.toString();
+	}
+
 
 }

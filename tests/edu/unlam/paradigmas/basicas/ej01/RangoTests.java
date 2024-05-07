@@ -329,5 +329,34 @@ class RangoTests {
 		assertArrayEquals(conjuntoOrdenado, conjuntoDesordenado);
 	}
 	
+	@Test
+	void TestRangoCerradoToString() {
+		Rango r1 = Rango.NewRangoCerrado(1.344, 2.898);
+		
+		assertEquals("[1.344,2.898]", r1.toString());
+	}
+	
+	@Test
+	void TestRangoAbiertoToString() {
+		Rango r1 = Rango.NewRangoAbierto(1.344, 2.898);
+		
+		assertEquals("(1.344,2.898)", r1.toString());
+	}
+	
+	@Test
+	void TestRangoCerradoAIzquierdaToString() {
+		Rango r1 = Rango.NewRangoCerradoAIzquierda(1.344, 2.898);
+		
+		assertEquals("[1.344,2.898)", r1.toString());
+	}
+	
+	@Test
+	void TestRangoCerradoADerechaToString() {
+		Rango r1 = Rango.NewRangoCerradoADerecha(1.344, 2.898);
+		
+		assertEquals("(1.344,2.898]", r1.toString());
+	}
+	
+	
 	
 }
