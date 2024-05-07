@@ -387,5 +387,15 @@ class RangoTests {
 		assertEquals(abarcativo, Rango.NewRangoAbarcativo(rangos));
 	}
 	
+	@Test
+	void TestRangoSuma() {
+		Rango r1 = Rango.NewRangoCerrado(1,2);
+		Rango r2 = Rango.NewRangoCerrado(-10,-5);
+		
+		Rango suma = Rango.NewRangoCerrado(-10, 2);
+		
+		assertEquals(suma, r1.sumar(r2));
+	}
+	
 	
 }

@@ -39,14 +39,19 @@ public class Rango {
 		Rango rangoAbarcativo = NewRangoAbierto(0,0); // Rango cero
 		
 		for(Rango rango : rangos) {
-			
-			// Comparo si el extremo izquierdo es menor
-			rangoAbarcativo = SumarAIzquierda(rangoAbarcativo, rango);
-			rangoAbarcativo =  SumarADerecha(rangoAbarcativo, rango);
+			rangoAbarcativo = SumarRangos(rangoAbarcativo, rango);
 		}
 		
 		return rangoAbarcativo;
 		
+	}
+	
+	
+	private static Rango SumarRangos(Rango r1, Rango r2) {
+		Rango suma = SumarAIzquierda(r1, r2);
+		suma = SumarADerecha(suma,r2);
+		
+		return suma;
 	}
 	
 	/**
@@ -131,6 +136,10 @@ public class Rango {
 
 	public boolean esAbierto() {
 		return this.esAbiertoAIzquierda() && this.esAbiertoADerecha();
+	}
+	
+	public Rango sumar(Rango otro) {
+		return SumarRangos(this, otro);
 	}
 	
 	@Override
