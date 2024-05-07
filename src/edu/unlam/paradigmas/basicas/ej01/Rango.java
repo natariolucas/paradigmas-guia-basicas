@@ -49,6 +49,13 @@ public class Rango {
 				otro.incluyeRango(this);
 	}
 	
+	public double getValorAIzquierda() {
+		return this.extremoIzquierdo.getValor();
+	}
+	
+	public double getValorADerecha() {
+		return this.extremoDerecho.getValor();
+	}
 
 	public boolean esCerrado() {
 		return this.esCerradoAIzquierda() && this.esCerradoADerecha();

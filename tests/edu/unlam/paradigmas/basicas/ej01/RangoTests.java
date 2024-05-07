@@ -2,6 +2,8 @@ package edu.unlam.paradigmas.basicas.ej01;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+import java.util.Arrays;
+
 import org.junit.jupiter.api.Test;
 
 class RangoTests {
@@ -271,7 +273,61 @@ class RangoTests {
 		assertFalse(rango.equals(otro));
 		assertFalse(otro.equals(rango));
 	}
+	
+	@Test
+	void TestOrdenRangosMismoValor() {
+		Rango r1 = Rango.NewRangoAbierto(1, 2);
+		Rango r2 = Rango.NewRangoCerrado(1, 2);
+		
+		Rango[] conjuntoDesordenado = new Rango[] {r1, r2};
+		Arrays.sort(conjuntoDesordenado, new RangosPorInicioYFin());
 
+		Rango[] conjuntoOrdenado = new Rango[] {r2, r1};
+		
+		assertArrayEquals(conjuntoOrdenado, conjuntoDesordenado);
+	}
+	
+	@Test
+	void TestOrdenRangosDistintoValor() {
+		Rango r1 = Rango.NewRangoCerrado(-10, 2);
+		Rango r2 = Rango.NewRangoCerrado(1, 2);
+		Rango r3 = Rango.NewRangoCerrado(3, 4);
+		
+		Rango[] conjuntoDesordenado = new Rango[] {r3, r2, r1};
+		Arrays.sort(conjuntoDesordenado, new RangosPorInicioYFin());
+
+		Rango[] conjuntoOrdenado = new Rango[] {r1, r2,r3};
+		
+		assertArrayEquals(conjuntoOrdenado, conjuntoDesordenado);
+	}
+
+	@Test
+	void TestOrdenRangosDesempataPorFin() {
+		Rango r1 = Rango.NewRangoCerradoAIzquierda(0, 2);
+		Rango r2 = Rango.NewRangoCerradoAIzquierda(0, 20);
+		Rango r3 = Rango.NewRangoCerradoAIzquierda(0, 50);
+		
+		Rango[] conjuntoDesordenado = new Rango[] {r3, r1, r2};
+		Arrays.sort(conjuntoDesordenado, new RangosPorInicioYFin());
+
+		Rango[] conjuntoOrdenado = new Rango[] {r1, r2,r3};
+		
+		assertArrayEquals(conjuntoOrdenado, conjuntoDesordenado);
+	}
+	
+	@Test
+	void TestOrdenRangosDesempataPorFinDistintaInclusion() {
+		Rango r1 = Rango.NewRangoCerradoAIzquierda(0, 2);
+		Rango r2 = Rango.NewRangoCerradoAIzquierda(0, 20);
+		Rango r3 = Rango.NewRangoCerrado(0, 20);
+		
+		Rango[] conjuntoDesordenado = new Rango[] {r3, r1, r2};
+		Arrays.sort(conjuntoDesordenado, new RangosPorInicioYFin());
+
+		Rango[] conjuntoOrdenado = new Rango[] {r1, r2,r3};
+		
+		assertArrayEquals(conjuntoOrdenado, conjuntoDesordenado);
+	}
 	
 	
 }
