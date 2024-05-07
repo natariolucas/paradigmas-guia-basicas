@@ -41,27 +41,47 @@ public class Rango {
 		for(Rango rango : rangos) {
 			
 			// Comparo si el extremo izquierdo es menor
-			if ( rango.getExtremoIzquierdo().compareTo(rangoAbarcativo.getExtremoIzquierdo()) < 0 ) {
-				rangoAbarcativo = new Rango(
-						rango.esCerradoAIzquierda(),  // Agrando hacia la izquierda
-						rango.getValorAIzquierda(),
-						rangoAbarcativo.esCerradoADerecha(), // La derecha no la modifico
-						rangoAbarcativo.getValorADerecha()
-						);
-			}
-			
-			// Comparo si el extremo derecho es mayor
-			if ( rango.getExtremoDerecho().compareTo(rangoAbarcativo.getExtremoDerecho()) > 0 ) {
-				rangoAbarcativo = new Rango(
-						rangoAbarcativo.esCerradoAIzquierda(),  // La izquierda no la modifico
-						rangoAbarcativo.getValorAIzquierda(),
-						rango.esCerradoADerecha(), // Agrando hacia la derecha
-						rango.getValorADerecha()
-						);
-			}
+			rangoAbarcativo = SumarAIzquierda(rangoAbarcativo, rango);
+			rangoAbarcativo =  SumarADerecha(rangoAbarcativo, rango);
 		}
 		
 		return rangoAbarcativo;
+		
+	}
+	
+	/**
+	 * A derecha queda el extremo de r1
+	 * A izquierda, el rango resutante no será menor a r1
+	 * */
+	private static Rango SumarAIzquierda(Rango r1, Rango r2) { // A derecha queda el etremo de r1
+		ExtremoIzquierdo izquierdoMenor = r2.getExtremoIzquierdo();
+		
+		if (r1.getExtremoIzquierdo().compareTo(r2.getExtremoIzquierdo()) < 0 ) {
+			izquierdoMenor = r1.getExtremoIzquierdo();
+		}
+		
+		return new Rango(
+				izquierdoMenor.esCerrado(),
+				izquierdoMenor.getValor(),
+				r1.esCerradoADerecha(),
+				r1.getValorADerecha()
+				);
+		
+	}
+	
+	private static Rango SumarADerecha(Rango r1, Rango r2) { // A derecha queda el etremo de r1
+		ExtremoDerecho derechoMayor = r2.getExtremoDerecho();
+		
+		if (r1.getExtremoDerecho().compareTo(r2.getExtremoDerecho()) > 0 ) {
+			derechoMayor = r1.getExtremoDerecho();
+		}
+		
+		return new Rango(
+				r1.esCerradoAIzquierda(),
+				r1.getValorAIzquierda(),
+				derechoMayor.esCerrado(),
+				derechoMayor.getValor()
+				);
 		
 	}
 	
