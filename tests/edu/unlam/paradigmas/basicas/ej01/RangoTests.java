@@ -358,17 +358,34 @@ class RangoTests {
 	}
 	
 	@Test
-	void TestRangoAbarcativoPorValores() {
+	void TestRangoAbarcativoCerrado() {
 		Rango r1 = Rango.NewRangoCerrado(1,2);
 		Rango r2 = Rango.NewRangoCerrado(-3,2);
 		Rango r3 = Rango.NewRangoCerrado(1,5);
-		Rango[] rangos = new Rango[] {r1,r2,r3};
+		Rango r4 = Rango.NewRangoCerradoADerecha(-1,10);
+		Rango r5 = Rango.NewRangoCerradoAIzquierda(-1,10);
 		
-		Rango abarcativo = Rango.NewRangoCerrado(-3, 5);
+		Rango[] rangos = new Rango[] {r1,r2,r3, r4, r5};
+		
+		Rango abarcativo = Rango.NewRangoCerrado(-3, 10);
 		
 		assertEquals(abarcativo, Rango.NewRangoAbarcativo(rangos));
 	}
 	
+	@Test
+	void TestRangoAbarcativoAbierto() {
+		Rango r1 = Rango.NewRangoCerrado(1,2);
+		Rango r2 = Rango.NewRangoAbierto(-3,2);
+		Rango r3 = Rango.NewRangoCerrado(1,5);
+		Rango r4 = Rango.NewRangoCerradoADerecha(-1,9);
+		Rango r5 = Rango.NewRangoAbierto(-1,10);
+		
+		Rango[] rangos = new Rango[] {r1,r2,r3, r4, r5};
+		
+		Rango abarcativo = Rango.NewRangoAbierto(-3, 10);
+		
+		assertEquals(abarcativo, Rango.NewRangoAbarcativo(rangos));
+	}
 	
 	
 }
