@@ -1,5 +1,7 @@
 package edu.unlam.paradigmas.basicas.ej01;
 
+import java.util.Objects;
+
 public class Rango {
 	private ExtremoIzquierdo extremoIzquierdo;
 	private ExtremoDerecho extremoDerecho;
@@ -47,6 +49,7 @@ public class Rango {
 				otro.incluyeRango(this);
 	}
 	
+
 	public boolean esCerrado() {
 		return this.esCerradoAIzquierda() && this.esCerradoADerecha();
 	}
@@ -69,6 +72,24 @@ public class Rango {
 
 	public boolean esAbierto() {
 		return this.esAbiertoAIzquierda() && this.esAbiertoADerecha();
+	}
+	
+	@Override
+	public int hashCode() {
+		return Objects.hash(extremoDerecho, extremoIzquierdo);
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Rango other = (Rango) obj;
+		return Objects.equals(extremoDerecho, other.extremoDerecho)
+				&& Objects.equals(extremoIzquierdo, other.extremoIzquierdo);
 	}
 
 }

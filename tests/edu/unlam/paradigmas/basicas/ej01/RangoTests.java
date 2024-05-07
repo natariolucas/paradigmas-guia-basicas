@@ -244,6 +244,33 @@ class RangoTests {
 		assertTrue(rango.intersectaRango(otro));
 		assertTrue(otro.intersectaRango(rango));
 	}
+	
+	@Test
+	void TestRangosIguales() {
+		Rango rango = Rango.NewRangoCerrado(1, 2);
+		Rango otro = Rango.NewRangoCerrado(1, 2);
+		
+		assertTrue(rango.equals(otro));
+		assertTrue(otro.equals(rango));
+	}
+	
+	@Test
+	void TestRangosDistintos() {
+		Rango rango = Rango.NewRangoAbierto(3, 4);
+		Rango otro = Rango.NewRangoCerrado(1, 2);
+		
+		assertFalse(rango.equals(otro));
+		assertFalse(otro.equals(rango));
+	}
+	
+	@Test
+	void TestRangosIgualValorDistintaIclusion() {
+		Rango rango = Rango.NewRangoAbierto(1, 2);
+		Rango otro = Rango.NewRangoCerrado(1, 2);
+		
+		assertFalse(rango.equals(otro));
+		assertFalse(otro.equals(rango));
+	}
 
 	
 	
