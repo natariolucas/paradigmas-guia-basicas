@@ -357,6 +357,18 @@ class RangoTests {
 		assertEquals("(1.344,2.898]", r1.toString());
 	}
 	
+	@Test
+	void TestRangoAbarcativoPorValores() {
+		Rango r1 = Rango.NewRangoCerrado(1,2);
+		Rango r2 = Rango.NewRangoCerrado(-3,2);
+		Rango r3 = Rango.NewRangoCerrado(1,5);
+		Rango[] rangos = new Rango[] {r1,r2,r3};
+		
+		Rango abarcativo = Rango.NewRangoCerrado(-3, 5);
+		
+		assertEquals(abarcativo, Rango.NewRangoAbarcativo(rangos));
+	}
+	
 	
 	
 }

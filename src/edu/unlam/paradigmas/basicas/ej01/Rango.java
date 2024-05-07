@@ -35,6 +35,36 @@ public class Rango {
 		return new Rango(false, extremoIzquierda, false, extremoDerecha);
 	}
 	
+	public static Rango NewRangoAbarcativo(Rango[] rangos) {
+		Rango rangoAbarcativo = NewRangoAbierto(0,0); // Rango cero
+		
+		for(Rango rango : rangos) {
+			
+			// Comparo si el extremo izquierdo es menor
+			if ( rango.getExtremoIzquierdo().compareTo(rangoAbarcativo.getExtremoIzquierdo()) < 0 ) {
+				rangoAbarcativo = new Rango(
+						rango.esCerradoAIzquierda(),  // Agrando hacia la izquierda
+						rango.getValorAIzquierda(),
+						rangoAbarcativo.esCerradoADerecha(), // La derecha no la modifico
+						rangoAbarcativo.getValorADerecha()
+						);
+			}
+			
+			// Comparo si el extremo derecho es mayor
+			if ( rango.getExtremoDerecho().compareTo(rangoAbarcativo.getExtremoDerecho()) > 0 ) {
+				rangoAbarcativo = new Rango(
+						rangoAbarcativo.esCerradoAIzquierda(),  // La izquierda no la modifico
+						rangoAbarcativo.getValorAIzquierda(),
+						rango.esCerradoADerecha(), // Agrando hacia la derecha
+						rango.getValorADerecha()
+						);
+			}
+		}
+		
+		return rangoAbarcativo;
+		
+	}
+	
 	public boolean incluyeValor(double valor ) {
 		return this.extremoIzquierdo.incluyeValor(valor) && this.extremoDerecho.incluyeValor(valor);
 	}
@@ -104,6 +134,14 @@ public class Rango {
 	@Override
 	public String toString() {
 		return this.extremoIzquierdo.toString() + SEPARADOR + this.extremoDerecho.toString();
+	}
+	
+	private ExtremoIzquierdo getExtremoIzquierdo() {
+		return extremoIzquierdo;
+	}
+
+	private ExtremoDerecho getExtremoDerecho() {
+		return extremoDerecho;
 	}
 
 
