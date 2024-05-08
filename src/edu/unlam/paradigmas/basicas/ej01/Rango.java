@@ -18,6 +18,11 @@ public class Rango {
 		}
 
 	}
+	
+	private Rango(ExtremoIzquierdo izquierdo, ExtremoDerecho derecho) {
+		this.extremoIzquierdo = izquierdo;
+		this.extremoDerecho = derecho;
+	}
 
 	public static Rango NewRangoCerrado(double extremoIzquierda, double extremoDerecha) {
 		return new Rango(true, extremoIzquierda, true, extremoDerecha);
@@ -50,7 +55,7 @@ public class Rango {
 		ExtremoIzquierdo izquierdo = r1.getExtremoIzquierdo().sumar(r2.getExtremoIzquierdo());
 		ExtremoDerecho derecho = r1.getExtremoDerecho().sumar(r2.getExtremoDerecho());
 
-		return new Rango(izquierdo.esCerrado(), izquierdo.getValor(), derecho.esCerrado(), derecho.getValor());
+		return new Rango(izquierdo,derecho);
 	}
 
 
