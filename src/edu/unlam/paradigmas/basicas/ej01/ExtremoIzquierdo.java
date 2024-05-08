@@ -44,6 +44,16 @@ public class ExtremoIzquierdo extends Extremo implements Comparable<ExtremoIzqui
 		int diferenciaDeValor = super.compararValor(derecho);
 		return ( diferenciaDeValor == 0 && this.esCerrado() && derecho.esCerrado() ) || diferenciaDeValor < 0;
 	}
+	
+	public ExtremoIzquierdo sumar(ExtremoIzquierdo otro) {
+		ExtremoIzquierdo izquierdoMenor = otro;
+		
+		if (this.compareTo(otro) < 0 ) {
+			izquierdoMenor = this;
+		}
+		
+		return new ExtremoIzquierdo(izquierdoMenor.valor, izquierdoMenor.cerrado);
+	}
 
 	@Override
 	public String toString() {
