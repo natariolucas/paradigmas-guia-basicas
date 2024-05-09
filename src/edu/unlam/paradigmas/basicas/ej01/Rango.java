@@ -103,6 +103,15 @@ public class Rango {
 		return new Rango(mayorIzquierdo, menorDerecho);
 	}
 	
+	public Rango obtenerRangoDesplazado(double desplazamiento) {
+		return new Rango(
+					this.extremoIzquierdo.esCerrado(),
+					this.extremoIzquierdo.getValor()+desplazamiento,
+					this.extremoDerecho.esCerrado(),
+					this.extremoDerecho.getValor()+desplazamiento
+				);
+	}
+	
 	public double getValorAIzquierda() {
 		return this.extremoIzquierdo.getValor();
 	}

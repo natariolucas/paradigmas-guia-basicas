@@ -416,4 +416,12 @@ class RangoTests {
 		
 		assertEquals(interseccion, r1.obtenerRangoIntersección(r2));
 	}
+	
+	@Test
+	void TestRangoDesplazado() {
+		Rango rango = Rango.NewRangoCerrado(1,3);
+		Rango rangoDesplazado = Rango.NewRangoCerrado(4,6);
+		
+		assertEquals(rangoDesplazado, rango.obtenerRangoDesplazado(3));
+	}
 }
