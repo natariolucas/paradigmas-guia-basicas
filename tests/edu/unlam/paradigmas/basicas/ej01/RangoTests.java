@@ -397,5 +397,23 @@ class RangoTests {
 		assertEquals(suma, r1.sumar(r2));
 	}
 	
+	@Test
+	void TestRangoInterseccion() {
+		Rango r1 = Rango.NewRangoCerrado(1,5);
+		Rango r2 = Rango.NewRangoCerrado(2,10);
+		
+		Rango esperado = Rango.NewRangoCerrado(2, 5);
+		Rango interseccion = r1.obtenerRangoIntersección(r2);
+		assertEquals(esperado, interseccion);
+	}
 	
+	@Test
+	void TestRangoInterseccionInvalido() {
+		Rango r1 = Rango.NewRangoCerrado(1,5);
+		Rango r2 = Rango.NewRangoCerrado(10,15);
+		
+		Rango interseccion = Rango.NewRangoAbierto(0, 0);
+		
+		assertEquals(interseccion, r1.obtenerRangoIntersección(r2));
+	}
 }

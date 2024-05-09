@@ -68,15 +68,41 @@ public class Rango {
 		return this.extremoIzquierdo.incluyeExtremo(otro.extremoIzquierdo)
 				&& this.extremoDerecho.incluyeExtremo(otro.extremoDerecho);
 	}
+	
+	private boolean intersectaRangoPorIzquierda(Rango otro) {
+		return this.extremoIzquierdo.incluyeExtremo(otro.extremoIzquierdo)
+				&& this.extremoDerecho.incluyeExtremo(otro.extremoIzquierdo);
+	}
 
+	private boolean intersectaRangoPorDerecha(Rango otro) {
+		return this.extremoIzquierdo.incluyeExtremo(otro.extremoDerecho)
+		&& this.extremoDerecho.incluyeExtremo(otro.extremoDerecho);
+	}
+	
 	public boolean intersectaRango(Rango otro) {
-		return (this.extremoIzquierdo.incluyeExtremo(otro.extremoIzquierdo)
-				&& this.extremoDerecho.incluyeExtremo(otro.extremoIzquierdo))
-				|| (this.extremoIzquierdo.incluyeExtremo(otro.extremoDerecho)
-						&& this.extremoDerecho.incluyeExtremo(otro.extremoDerecho))
+		return (this.intersectaRangoPorIzquierda(otro))
+				|| (this.intersectaRangoPorDerecha(otro))
 				|| otro.incluyeRango(this);
 	}
 
+	public Rango obtenerRangoIntersección(Rango otro) {
+		ExtremoIzquierdo mayorIzquierdo = this.extremoIzquierdo;
+		if (this.extremoIzquierdo.compareTo(otro.extremoIzquierdo) < 0) {
+			mayorIzquierdo = otro.extremoIzquierdo;
+		}
+		
+		ExtremoDerecho menorDerecho = this.extremoDerecho;
+		if (this.extremoDerecho.compareTo(otro.extremoDerecho) > 0) {
+			menorDerecho = otro.extremoDerecho;
+		}
+		
+		if (Double.compare(mayorIzquierdo.getValor(), menorDerecho.getValor()) > 0) {
+			return NewRangoAbierto(0,0);
+		}
+		
+		return new Rango(mayorIzquierdo, menorDerecho);
+	}
+	
 	public double getValorAIzquierda() {
 		return this.extremoIzquierdo.getValor();
 	}
